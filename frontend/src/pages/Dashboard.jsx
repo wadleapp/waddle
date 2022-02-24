@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavBar from "../components/NavBar";
 import "./Dashboard.scss";
 import DashboardBg from "../images/dashboard-background.svg";
 import Engagement from "../components/Dashboard/Engagement";
@@ -13,16 +12,11 @@ import { selectNickname } from "../app/reducers/UserSlice";
 const Dashboard = () => {
   const [questionModal, setQuestionModal] = useState(false);
 
-  const handleQuestionSubmit = () => {
-    setQuestionModal(false);
-  };
-
   const user = {
     name: useSelector(selectNickname),
   };
 
-  const dailyTip =
-    "Take a breath. Step outside and inhale and exhale for 1 minute.";
+  const dailyTip = "Take a breath. Step outside and inhale and exhale for 1 minute.";
 
   return (
     <div className="page-content dashboard flex-c">
@@ -34,14 +28,11 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="flex-c complete-questions">
-        <p
-          className="btn btn-primary--red-dark text-a-c"
-          onClick={() => setQuestionModal(true)}
-        >
+        <p className="btn btn-primary--red-dark text-a-c" onClick={() => setQuestionModal(true)}>
           Complete your Check In
         </p>
         <ReactModal isOpen={questionModal}>
-          <Questions onClose={handleQuestionSubmit} />
+          <Questions setQuestionModal={setQuestionModal} />
         </ReactModal>
       </div>
       <div className="daily-tip">
@@ -58,8 +49,8 @@ const Dashboard = () => {
       <div className="dashboard-section motivation">
         <p className="title">Motivation</p>
         <p>
-          Based on your results, lets see how much motivation you have to do
-          basic activities and work.
+          Based on your results, lets see how much motivation you have to do basic activities and
+          work.
         </p>
       </div>
     </div>
