@@ -12,7 +12,6 @@ const Happiness = () => {
   useEffect(() => {
     if (userId) {
       axiosJSONInst.get("/sentiment/" + userId).then((res) => {
-        console.log(res);
         if (res.data !== null) {
           setHappiness(res.data);
         }
@@ -20,6 +19,7 @@ const Happiness = () => {
     }
   }, [userId]);
 
+  // TODO: Set days
   const days = ["S", "M", "T", "W", "T", "F", "S"];
 
   return (
