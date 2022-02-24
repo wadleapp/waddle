@@ -1,5 +1,5 @@
-import json
 import os
+from datetime import date
 
 import httpx
 from app.dependencies import models
@@ -12,7 +12,7 @@ router = APIRouter(prefix="/responses", tags=["responses"])
 async def create_response(response_in: models.ResponseIn):
     data = {
         "Data": ",".join(response_in.values),
-        "Date": response_in.date,
+        "Date": date.today().strftime("%Y-%m-%d"),
         "User_id": response_in.uid,
         "Questions_id": response_in.qid,
     }
