@@ -262,7 +262,7 @@ func GetSupportBySupporterId(c *fiber.Ctx) error {
 }
 
 func GetAllResponseWithUser(c *fiber.Ctx) error {
-	rows, err := DATABASE.Query("SELECT * FROM Response WHERE User_id='" + c.Params("user_id") + "';")
+	rows, err := DATABASE.Query("SELECT * FROM response WHERE user_id = '" + c.Params("user_id") + "';")
 
 	if err != nil {
 		fmt.Println(err)
