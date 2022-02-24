@@ -18,49 +18,36 @@ const PageContainer = () => {
   useEffect(() => {
     setPage(currentPage);
   }, [currentPage]);
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case Pages.Login:
-        return <Login />;
-      case Pages.Registration:
-        return <Register />;
-      case Pages.History:
-        return (
+  return (
+    <div className="page-parent">
+      <div className="page-container">
+        {currentPage === Pages.History && (
           <>
             <History />
             <NavBar />
           </>
-        );
-      case Pages.Dashboard:
-        return (
+        )}
+        {currentPage === Pages.Dashboard && (
           <>
             <Dashboard />
             <NavBar />
           </>
-        );
-      case Pages.Peers:
-        return (
+        )}
+        {currentPage === Pages.Peers && (
           <>
             <Peers />
             <NavBar />
           </>
-        );
-      case Pages.Settings:
-        return (
+        )}
+        {currentPage === Pages.Settings && (
           <>
             <Settings />
             <NavBar />
           </>
-        );
-      default:
-        return <div>Page not found</div>;
-    }
-  };
-
-  return (
-    <div className="page-parent">
-      <div className="page-container">{renderPage}</div>
+        )}
+        {currentPage === Pages.Login && <Login />}
+        {currentPage === Pages.Registration && <Register />}
+      </div>
     </div>
   );
 };
