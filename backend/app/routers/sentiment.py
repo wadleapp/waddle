@@ -1,16 +1,11 @@
 import os
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 
 import httpx
 from app.dependencies import sentiment
 from fastapi import APIRouter, HTTPException
 
 router = APIRouter(prefix="/sentiment", tags=["sentiment"])
-
-
-@router.get("")
-async def get_emoji_sentiments():
-    return sentiment.emoji_sentiments
 
 
 @router.get("/suggestions/")
@@ -33,13 +28,16 @@ async def get_sentiment_score(user_id: str):
             raise HTTPException(status_code=400, detail=response.json()["type"])
 
     if tokens:
-        batched_tokens = {date.today() - timedelta(days=i): [] for i in range(7)}
+        batched_tokens = {date.today() - timedelta(days=i): [] for i in range(6, -1, -1)}
         for token in tokens:
-            batched_tokens[token["Date"]] = token["Data"]
+            token_date = datetime.strptime(token["Date"], "%Y-%m-%dT%H:%M:%SZ").date()
+            batched_tokens[token_date].append(token["Data"])
         batched_sentiment = {
-            i: sentiment.get_sentiment(tokens) for i, tokens in enumerate(batched_tokens.values())
+            i: await sentiment.get_sentiment(tokens)
+            for i, tokens in enumerate(batched_tokens.values())
         }
-        return batched_sentiment
+        sentiment_response = [{"x": k, "y": v} for k, v in batched_sentiment.items()]
+        return sentiment_response
 
 
 @router.get("/{emoji}")

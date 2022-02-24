@@ -22,7 +22,9 @@ emoji_sentiments = {e: s for s, e in emoji_sentiments}
 
 
 async def get_sentiment(tokens: List[str]):
-    with httpx.AsyncClient() as client:
+    if not tokens:
+        return 0
+    async with httpx.AsyncClient() as client:
         sum = 0
         for token in tokens:
             if token in emoji_sentiments:
@@ -30,8 +32,8 @@ async def get_sentiment(tokens: List[str]):
             else:
                 response = await client.post(
                     "https://language.googleapis.com/v1beta2/documents:analyzeSentiment?key="
-                    + os.environ("GOOGLE_API_KEY"),
-                    data={"document": {"type": "PLAIN_TEXT", "content": token}},
+                    + os.environ["GOOGLE_API_KEY"],
+                    json={"document": {"type": "PLAIN_TEXT", "content": token}},
                 )
                 if response.status_code == 200:
                     sum += response.json()["documentSentiment"]["score"]
