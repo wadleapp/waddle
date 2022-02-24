@@ -1,11 +1,6 @@
-import {
-  selectAuthStatus,
-  setAuthStatus,
-  setToken,
-} from "../../app/reducers/AuthenticationSlice";
+import { setToken } from "../../app/reducers/AuthenticationSlice";
 import axiosFORMInst from "../../AxiosFORM";
 import axiosJSONInst from "../../AxiosJSON";
-import { useDispatch, useSelector } from "react-redux";
 import { setPage } from "../../app/reducers/RoutingSlice";
 import { Pages } from "../../pages/PageEnums";
 export function passwordsMatch(props) {

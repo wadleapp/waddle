@@ -1,15 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import counterSlice from "../../features/counter/counterSlice";
-
-class User {
-  nickname;
-  email;
-}
 
 const initialState = {
-  nickname: "defaultUser", // String -> can keep like this or set to be another value
-  email: "defaultEmail", // String -> can keep like this or set to another value
-  uid: "defaultId",
+  nickname: "", // String -> can keep like this or set to be another value
+  email: "", // String -> can keep like this or set to another value
+  uid: "",
   pin: null, // Number -> set as null to begin with, but can be changd to another value
 };
 

@@ -1,4 +1,4 @@
 export const QuestionTypes = {
-    emoji: 'emoji',
-    keyword: 'keyword'
-}
+  emoji: "emoji",
+  keyword: "keyword",
+};

@@ -5,9 +5,8 @@ const axiosJSONInst = axios.create({
   timeout: 20000,
   headers: {
     "Content-Type": "application/json",
-    "accept": "application/json",
+    accept: "application/json",
   },
 });
-
 
 export default axiosJSONInst;

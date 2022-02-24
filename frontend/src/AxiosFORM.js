@@ -5,9 +5,8 @@ const axiosFORMInst = axios.create({
   timeout: 20000,
   headers: {
     "Content-Type": "application/www-form-urlencoded",
-    "accept": "application/www-form-urlencoded",
+    accept: "application/www-form-urlencoded",
   },
 });
-
 
 export default axiosFORMInst;

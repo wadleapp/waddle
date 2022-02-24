@@ -50,18 +50,20 @@ const NavBar = () => {
 
   return (
     <div className="navbar flex-r">
-      {links.map((l) => {
-        if (l.enabled) {
+      {links.map((link) => {
+        if (link.enabled) {
           return (
             <div
-              className={`navbar-link ${currentPage === l.page ? 'active' : 'inactive'}`}
-              key={l.name}
-              id={l.name}
-              onClick={() => handleClick(l.page)}
+              className={`navbar-link ${currentPage === link.page ? "active" : "inactive"}`}
+              key={link.name}
+              id={link.name}
+              onClick={() => handleClick(link.page)}
             >
-              <img src={l.icon} />
+              <img src={link.icon} alt="Link Icon" />
             </div>
           );
+        } else {
+          return null;
         }
       })}
     </div>

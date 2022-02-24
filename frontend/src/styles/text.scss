@@ -1,33 +1,33 @@
-@import 'colors.scss';
+@import "colors.scss";
 
 .all-caps {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .text {
-    @each $key, $val in $colors {
-        &--#{$key} {
-            color: $val;
-        }
+  @each $key, $val in $colors {
+    &--#{$key} {
+      color: $val;
     }
-    &-link {
-        text-decoration: underline;
+  }
+  &-link {
+    text-decoration: underline;
+  }
+  &-b {
+    font-weight: bold;
+  }
+  &-i {
+    font-style: italic;
+  }
+  &-a {
+    &-c {
+      text-align: center;
     }
-    &-b {
-        font-weight: bold;
+    &-l {
+      text-align: left;
     }
-    &-i {
-        font-style: italic;
+    &-cr {
+      text-align: right;
     }
-    &-a {
-        &-c {
-            text-align: center;
-        }
-        &-l {
-            text-align: left;
-        }
-        &-cr {
-            text-align: right;
-        }
-    }
+  }
 }

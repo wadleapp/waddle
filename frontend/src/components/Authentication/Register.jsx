@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import TextField from "../Inputs/TextField";
-import { submitRegistration } from "./AuthenticationFunctions";
 import "./Authentication.scss";
 import { useDispatch } from "react-redux";
 import { setPage } from "../../app/reducers/RoutingSlice";
@@ -9,15 +8,14 @@ import { Pages } from "../../pages/PageEnums";
 import axiosJSONInst from "../../AxiosJSON";
 
 const Register = () => {
-  var responseMessage = "";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [name, setName] = useState("");
   const [pin, setPin] = useState("");
   const [errors, setErrors] = useState("");
-  const [registerSuccess, setRegisterSuccess] = useState();
-  const [attemptedRegister, setAttempedRegister] = useState(false);
+  // const [registerSuccess, setRegisterSuccess] = useState();
+  // const [attemptedRegister, setAttempedRegister] = useState(false);
   const dispatch = useDispatch();
 
   const handleRegister = () => {
@@ -34,7 +32,7 @@ const Register = () => {
         username: name,
         pin: pin,
       })
-      .then((res) => {
+      .then((_) => {
         setErrors("Account created! Please log in.");
         return;
       })
@@ -48,7 +46,7 @@ const Register = () => {
   };
 
   // Go to login page
-  const handLoginRedirect = () => {
+  const handleLoginRedirect = () => {
     dispatch(setPage(Pages.Login));
   };
 
@@ -99,7 +97,7 @@ const Register = () => {
           placeholder={"Create a 4-digit pin"}
           fieldValue={pin}
           setValue={(e) => setPin(e)}
-          inputmode={"numeric"}
+          inputMode={"numeric"}
         />
         <button
           className="btn btn-primary--blue-vibrant action-button all-caps"
@@ -107,11 +105,7 @@ const Register = () => {
         >
           Sign Up
         </button>
-        <h3>{responseMessage}</h3>
-        <button
-          className="btn btn-secondary--blue-vibrant "
-          onClick={() => handLoginRedirect()}
-        >
+        <button className="btn btn-secondary--blue-vibrant " onClick={() => handleLoginRedirect()}>
           Already Have an Account? Log-in Here
         </button>
       </div>
